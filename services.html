@@ -84,11 +84,11 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card{
+.hero-card,.card,.service-card,.project-card,.detail-card,.cta,.contact-card{
   border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
 .hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.faq-item::before,.contact-card::before{
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before{
   content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
@@ -98,7 +98,7 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
 .grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
 .projects-grid{grid-template-columns:repeat(3,1fr)}
-.card h3,.service-card h3,.project-card h2,.detail-card h2,.faq-item h3,.cta h2{margin-bottom:14px;font-size:1.35rem}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.cta h2{margin-bottom:14px;font-size:1.35rem}
 .section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
@@ -155,7 +155,7 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 }
 @media (max-width:640px){
   .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card,.timeline-item{padding:22px}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.cta,.contact-card,.timeline-item{padding:22px}
   .timeline-item{grid-template-columns:1fr}
 }
 </style>
@@ -178,15 +178,12 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
   <section class="page-hero reveal">
     <p class="hero-badge">УСЛУГИ</p>
     <h1>Что я могу сделать</h1>
-    <p>Здесь собраны основные направления, по которым я работаю. Эта страница нужна, чтобы сайт выглядел более полноценным и действительно многостраничным.</p>
+    <p>Я создаю лендинги, многостраничные сайты, презентации на HTML, страницы с анимациями и визуально насыщенные интерфейсы. Также могу собрать страницу проекта так, чтобы она красиво презентовала живую работу.</p>
   </section>
   <section class="services-grid reveal">
     <div class="service-card glass hover-lift"><h3>Лендинги</h3><p>Продающие и презентационные страницы с сильной визуальной подачей.</p></div>
     <div class="service-card glass hover-lift"><h3>Многостраничные сайты</h3><p>Сайты с несколькими разделами: главная, услуги, проекты, контакты, информация.</p></div>
-    <div class="service-card glass hover-lift"><h3>Telegram-боты</h3><p>Автоматизация общения, команд, уведомлений и клиентских сценариев.</p></div>
-    <div class="service-card glass hover-lift"><h3>Веб-приложения</h3><p>Интерактивные сервисы и панели, где нужен красивый и понятный интерфейс.</p></div>
-    <div class="service-card glass hover-lift"><h3>Редизайн</h3><p>Обновление внешнего вида старых сайтов с более современной и дорогой подачей.</p></div>
-    <div class="service-card glass hover-lift"><h3>Индивидуальный дизайн</h3><p>Проекты с подбором фонов, анимаций, цветовой схемы и структуры под задачу.</p></div>
+    <div class="service-card glass hover-lift"><h3>HTML-презентации</h3><p>Сайты-презентации с насыщенным текстом, анимациями и атмосферным дизайном.</p></div>
   </section>
 </main>
 

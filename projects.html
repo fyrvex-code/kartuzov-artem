@@ -84,11 +84,11 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card{
+.hero-card,.card,.service-card,.project-card,.detail-card,.cta,.contact-card{
   border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
 .hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.faq-item::before,.contact-card::before{
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before{
   content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
@@ -98,7 +98,7 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
 .grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
 .projects-grid{grid-template-columns:repeat(3,1fr)}
-.card h3,.service-card h3,.project-card h2,.detail-card h2,.faq-item h3,.cta h2{margin-bottom:14px;font-size:1.35rem}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.cta h2{margin-bottom:14px;font-size:1.35rem}
 .section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
@@ -155,7 +155,7 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 }
 @media (max-width:640px){
   .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card,.timeline-item{padding:22px}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.cta,.contact-card,.timeline-item{padding:22px}
   .timeline-item{grid-template-columns:1fr}
 }
 </style>
@@ -177,30 +177,30 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 <main>
   <section class="page-hero reveal">
     <p class="hero-badge">МОИ ПРОЕКТЫ</p>
-    <h1>Раздел с сайтами</h1>
-    <p>Ниже находится блок «Сайты». Здесь карточки работают как переходы на отдельные страницы. Когда нажимаешь на карточку, открывается подробная страница сайта с описанием, преимуществами, блоком деталей и кнопкой «Перейти на сайт».</p>
+    <h1>Раздел с реальными сайтами</h1>
+    <p>Ниже находятся карточки по твоим реальным ссылкам. Каждая карточка открывает отдельную страницу проекта, где есть подробное описание и кнопка перехода на живой сайт.</p>
   </section>
   <section class="section-title reveal"><p>САЙТЫ</p><h2>Нажми на проект и открой подробности</h2></section>
   <section class="projects-grid reveal">
-    <a class="project-card glass hover-lift" href="site-alpha.html" style="text-decoration:none;color:inherit">
-      <div class="project-glow"></div><div class="project-thumb">💻</div><h2>Alpha Site</h2>
-      <p>Стильный презентационный сайт с крупной типографикой, современным фоном и яркими анимациями.</p>
-      <div class="chip-row"><span class="tag">Landing</span><span class="tag">Design</span></div>
+    <a class="project-card glass hover-lift" href="site-kartuzov-drive.html" style="text-decoration:none;color:inherit">
+      <div class="project-glow"></div><div class="project-thumb">🚗</div><h2>Kartuzov Drive</h2>
+      <p>Сайт инструктора по вождению с упором на спокойное обучение, механику, услуги, отзывы и запись на занятие.</p>
+      <div class="chip-row"><span class="tag">Driving</span><span class="tag">Services</span></div>
     </a>
-    <a class="project-card glass hover-lift" href="site-business.html" style="text-decoration:none;color:inherit">
-      <div class="project-glow"></div><div class="project-thumb">🏢</div><h2>Business Site</h2>
-      <p>Многостраничный сайт для бизнеса с акцентом на доверие, услуги, преимущества и красивую подачу.</p>
-      <div class="chip-row"><span class="tag">Business</span><span class="tag">Multi-page</span></div>
+    <a class="project-card glass hover-lift" href="site-granatovaya-palata.html" style="text-decoration:none;color:inherit">
+      <div class="project-glow"></div><div class="project-thumb">🏛️</div><h2>Грановитая палата</h2>
+      <p>Историческая HTML-презентация со слайдами о создании, архитектуре, создателях, интерьере и значении памятника.</p>
+      <div class="chip-row"><span class="tag">History</span><span class="tag">Presentation</span></div>
     </a>
-    <a class="project-card glass hover-lift" href="site-shop.html" style="text-decoration:none;color:inherit">
-      <div class="project-glow"></div><div class="project-thumb">🛒</div><h2>Shop Site</h2>
-      <p>Сайт для интернет-проекта с яркими карточками, разделами, кнопками действий и эффектной структурой.</p>
-      <div class="chip-row"><span class="tag">Store</span><span class="tag">UI</span></div>
+    <a class="project-card glass hover-lift" href="site-wizard-oz.html" style="text-decoration:none;color:inherit">
+      <div class="project-glow"></div><div class="project-thumb">🪄</div><h2>The Wizard of Oz</h2>
+      <p>Презентационный сайт о сказке и фильме с блоками о произведении, героях, сюжете и главной идее истории.</p>
+      <div class="chip-row"><span class="tag">Story</span><span class="tag">Landing</span></div>
     </a>
   </section>
   <section class="cta glass reveal">
-    <h2>Эти блоки легко заменить на твои реальные сайты</h2>
-    <p>Я уже подготовил структуру. Дальше можно просто поменять названия проектов, описания и ссылки на настоящие сайты.</p>
+    <h2>Карточки уже подключены к реальным проектам</h2>
+    <p>Теперь твой сайт-портфолио выглядит намного сильнее, потому что в разделе проектов стоят не заглушки, а реальные работы с отдельными страницами описания.</p>
   </section>
 </main>
 
