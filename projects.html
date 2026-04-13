@@ -8,17 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#070816;
-  --bg2:#0f1633;
-  --text:#f5f7ff;
-  --muted:#b6c2ff;
-  --accent1:#6f5bff;
-  --accent2:#00d4ff;
-  --accent3:#ff4fd8;
+  --bg:#050816;
+  --bg2:#0d1430;
+  --bg3:#101a3d;
+  --text:#f7f8ff;
+  --muted:#c7d2ff;
+  --accent1:#7a5cff;
+  --accent2:#00d5ff;
+  --accent3:#ff4fd2;
+  --accent4:#7dffb3;
   --glass:rgba(255,255,255,.08);
+  --glass-strong:rgba(255,255,255,.12);
   --border:rgba(255,255,255,.18);
   --shadow:0 20px 60px rgba(0,0,0,.35);
 }
@@ -26,27 +28,39 @@ html{scroll-behavior:smooth}
 body{
   font-family:'Montserrat',sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(111,91,255,.25), transparent 30%),
-    radial-gradient(circle at top right, rgba(0,212,255,.18), transparent 25%),
-    radial-gradient(circle at bottom center, rgba(255,79,216,.16), transparent 30%),
-    linear-gradient(135deg,var(--bg),var(--bg2));
+    radial-gradient(circle at 10% 10%, rgba(122,92,255,.22), transparent 20%),
+    radial-gradient(circle at 90% 12%, rgba(0,213,255,.16), transparent 18%),
+    radial-gradient(circle at 70% 80%, rgba(255,79,210,.12), transparent 22%),
+    radial-gradient(circle at 20% 85%, rgba(125,255,179,.08), transparent 18%),
+    linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
 }
 .bg-animation{
-  position:fixed; inset:0; z-index:-3;
-  background:linear-gradient(120deg, rgba(111,91,255,.08), rgba(0,212,255,.05), rgba(255,79,216,.08));
-  background-size:300% 300%;
-  animation:bgShift 10s ease infinite;
+  position:fixed; inset:0; z-index:-4;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(122,92,255,.08), transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(0,213,255,.07), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(255,79,210,.07), transparent 28%);
+  background-size:200% 200%;
+  animation:bgShift 14s ease infinite;
 }
-.particles{position:fixed; inset:0; z-index:-2; overflow:hidden}
-.particles::before,.particles::after{
-  content:""; position:absolute; width:700px; height:700px; border-radius:50%;
-  filter:blur(100px); opacity:.22;
+.grid-overlay{
+  position:fixed; inset:0; z-index:-3; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:40px 40px;
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.35));
 }
-.particles::before{top:-120px; left:-120px; background:var(--accent1); animation:blobMove1 12s ease-in-out infinite}
-.particles::after{bottom:-150px; right:-120px; background:var(--accent3); animation:blobMove2 14s ease-in-out infinite}
+.orbs{position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none}
+.orb{
+  position:absolute; border-radius:50%; filter:blur(70px); opacity:.22; animation:floatOrb 16s ease-in-out infinite;
+}
+.orb1{width:340px;height:340px;left:-60px;top:50px;background:var(--accent1)}
+.orb2{width:280px;height:280px;right:40px;top:140px;background:var(--accent2);animation-delay:-4s}
+.orb3{width:320px;height:320px;left:30%;bottom:-100px;background:var(--accent3);animation-delay:-8s}
 .glass{
   background:var(--glass);
   backdrop-filter:blur(18px);
@@ -55,154 +69,174 @@ body{
   box-shadow:var(--shadow);
 }
 .header{
-  width:calc(100% - 40px); max-width:1200px; margin:20px auto 0;
-  border-radius:22px; padding:18px 26px; display:flex; justify-content:space-between;
-  align-items:center; position:sticky; top:16px; z-index:50;
+  width:calc(100% - 40px); max-width:1240px; margin:20px auto 0;
+  border-radius:24px; padding:18px 26px; display:flex; justify-content:space-between;
+  align-items:center; position:sticky; top:14px; z-index:50;
+  background:linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
 }
-.logo{font-family:'Orbitron',sans-serif; font-size:1.5rem; font-weight:700; letter-spacing:1px}
+.logo{font-family:'Orbitron',sans-serif;font-size:1.55rem;font-weight:700;letter-spacing:1px}
 .logo span{color:var(--accent2)}
-.nav{display:flex; gap:12px; flex-wrap:wrap}
+.nav{display:flex;gap:12px;flex-wrap:wrap}
 .nav a{
-  color:var(--text); text-decoration:none; padding:10px 16px; border-radius:999px;
-  transition:.35s ease; position:relative;
+  color:var(--text);text-decoration:none;padding:11px 17px;border-radius:999px;transition:.35s ease;
+  position:relative;font-weight:600
+}
+.nav a::after{
+  content:"";position:absolute;left:16px;right:16px;bottom:7px;height:2px;border-radius:10px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent3));transform:scaleX(0);transform-origin:center;transition:.35s ease
 }
 .nav a:hover,.nav a.active{
-  background:rgba(255,255,255,.12); transform:translateY(-2px);
-  box-shadow:0 0 25px rgba(0,212,255,.2);
+  background:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 0 25px rgba(0,213,255,.18)
 }
-main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
+.nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
+main{width:min(1240px, calc(100% - 40px)); margin:44px auto 90px}
 .hero,.page-hero{
-  display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center; min-height:78vh;
+  display:grid;grid-template-columns:1.18fr .82fr;gap:30px;align-items:center;min-height:80vh
 }
-.page-hero{grid-template-columns:1fr; min-height:auto; padding:60px 0 20px}
-.hero-badge{
-  display:inline-block; font-size:.9rem; font-weight:700; letter-spacing:2px;
-  color:var(--accent2); margin-bottom:18px;
+.page-hero{grid-template-columns:1fr;min-height:auto;padding:58px 0 16px}
+.hero-badge,.mini-badge{
+  display:inline-block;padding:10px 16px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);
+  color:var(--accent2);font-size:.88rem;font-weight:700;letter-spacing:2px;margin-bottom:18px
 }
-.hero h1,.page-hero h1{font-size:clamp(2.4rem,5vw,5rem); line-height:1.05; margin-bottom:14px}
+.hero h1,.page-hero h1{font-size:clamp(2.5rem,5vw,5.2rem);line-height:1.02;margin-bottom:16px}
 .hero h1 span{
-  background:linear-gradient(90deg,var(--accent2),var(--accent3),#fff);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-size:200% auto; animation:shine 4s linear infinite;
+  background:linear-gradient(90deg,var(--accent2),var(--accent3),#ffffff,var(--accent4));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:250% auto;animation:shine 6s linear infinite
 }
-.hero h2{font-size:clamp(1.2rem,2.3vw,2rem); color:var(--muted); margin-bottom:20px}
-.hero-description,.page-hero p,.service-card p,.project-card p,.about-box p,.stat p,.cta p,.timeline-item p,.slide p{
-  font-size:1.02rem; line-height:1.85; color:#e7ebff;
+.hero h2{font-size:clamp(1.2rem,2.2vw,2rem);color:var(--muted);margin-bottom:18px}
+.hero-description,.page-hero p,.service-card p,.project-card p,.about-box p,.stat p,.cta p,.timeline-item p,.slide p,.feature-panel p,.text-block p,.contact-card p{
+  font-size:1.02rem;line-height:1.9;color:#edf0ff
 }
-.hero-buttons{display:flex; gap:16px; flex-wrap:wrap; margin-top:28px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;
-  padding:14px 24px; border-radius:14px; font-weight:700;
-  transition:transform .35s ease, box-shadow .35s ease, background .35s ease;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+  padding:14px 24px;border-radius:16px;font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
 }
 .btn:hover{transform:translateY(-4px) scale(1.02)}
-.btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff; box-shadow:0 12px 30px rgba(0,212,255,.25)}
-.btn-secondary{background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.15)}
+.btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
+.btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
 .hero-card{
-  border-radius:28px; padding:34px; min-height:320px; display:flex; flex-direction:column; justify-content:center; gap:16px;
+  border-radius:30px;padding:34px;min-height:350px;display:flex;flex-direction:column;justify-content:center;gap:16px;position:relative;overflow:hidden
 }
-.code-line{font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); opacity:.95}
-.code-line.accent{color:var(--accent2); text-shadow:0 0 20px rgba(0,212,255,.45)}
-.stats,.cards-grid,.projects-grid,.about-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:36px;
+.hero-card::before{
+  content:"";position:absolute;inset:-2px;background:conic-gradient(from 180deg, transparent, rgba(0,213,255,.3), transparent, rgba(255,79,210,.25), transparent);
+  filter:blur(16px);opacity:.75
+}
+.hero-card > *{position:relative}
+.code-line{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2vw,1.65rem);opacity:.98}
+.code-line.accent{color:var(--accent2);text-shadow:0 0 20px rgba(0,213,255,.45)}
+.stats,.cards-grid,.projects-grid,.about-grid,.feature-grid,.text-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px
 }
 .projects-grid{grid-template-columns:repeat(2,1fr)}
-.stat,.service-card,.project-card,.about-box{border-radius:24px; padding:26px; position:relative; overflow:hidden}
-.stat h3,.service-card h3,.project-card h2,.about-box h2,.timeline-item h3,.cta h2,.slide h3{margin-bottom:14px; font-size:1.35rem}
-.section-title{margin-top:90px; margin-bottom:20px}
+.stat,.service-card,.project-card,.about-box,.feature-panel,.text-block,.contact-card{
+  border-radius:26px;padding:28px;position:relative;overflow:hidden
+}
+.stat h3,.service-card h3,.project-card h2,.about-box h2,.timeline-item h3,.cta h2,.slide h3,.feature-panel h3,.text-block h3,.contact-card h3{
+  margin-bottom:14px;font-size:1.35rem
+}
+.section-title{margin-top:96px;margin-bottom:20px}
 .section-title.compact{margin-top:0}
-.section-title p{color:var(--accent2); letter-spacing:2px; font-weight:700; margin-bottom:10px}
-.section-title h2{font-size:clamp(2rem,3vw,3rem)}
-.cta{margin-top:90px; padding:34px; border-radius:28px; text-align:center}
-.footer{
-  width:min(1200px, calc(100% - 40px)); margin:0 auto 28px; border-radius:20px; text-align:center; padding:18px; color:#dbe2ff;
-}
-.inner-page{padding-top:30px}
-.timeline{margin-top:90px}
-.timeline-list{display:flex; flex-direction:column; gap:20px}
-.timeline-item{
-  display:grid; grid-template-columns:90px 1fr; gap:20px; padding:24px; border-radius:24px;
-}
-.timeline-item span{font-size:2rem; font-weight:800; color:var(--accent2)}
-.project-card{min-height:320px}
-.project-glow{
-  position:absolute; inset:auto -40px -40px auto; width:150px; height:150px;
-  background:radial-gradient(circle, rgba(0,212,255,.35), transparent 70%); filter:blur(8px);
-}
-.project-image.emoji{
-  width:76px; height:76px; display:grid; place-items:center; font-size:2rem;
-  border-radius:18px; margin-bottom:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15)
-}
+.section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
+.section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
+.icon{font-size:2rem;margin-bottom:14px}
 .hover-lift{transition:transform .45s ease, box-shadow .45s ease, border-color .45s ease}
 .hover-lift:hover{
   transform:translateY(-10px) scale(1.01);
-  box-shadow:0 20px 50px rgba(0,0,0,.35), 0 0 30px rgba(111,91,255,.18);
-  border-color:rgba(255,255,255,.3);
+  box-shadow:0 20px 50px rgba(0,0,0,.35),0 0 30px rgba(111,91,255,.18);
+  border-color:rgba(255,255,255,.3)
 }
-.floating{animation:floatCard 4.5s ease-in-out infinite}
-.reveal{opacity:0; transform:translateY(40px); transition:opacity .9s ease, transform .9s ease}
-.reveal.visible{opacity:1; transform:translateY(0)}
-.icon{font-size:2rem; margin-bottom:14px}
-.quotes-section{margin-top:90px; padding:34px; border-radius:28px}
+.reveal{opacity:0;transform:translateY(42px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.floating{animation:floatCard 5s ease-in-out infinite}
+.quotes-section,.cta,.slider,.contact-card{
+  border-radius:30px
+}
+.quotes-section,.cta{margin-top:96px;padding:34px;text-align:center}
 .quote-box{
-  min-height:92px; display:flex; align-items:center; justify-content:center; text-align:center;
-  font-size:1.35rem; line-height:1.6; color:#fff; padding:18px;
+  min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;
+  font-size:1.38rem;line-height:1.6;color:#fff;transition:.4s ease
 }
-.slider-section{margin-top:90px}
-.slider{
-  display:grid; grid-template-columns:64px 1fr 64px; align-items:center; gap:20px;
-  border-radius:28px; padding:24px;
-}
-.slides{overflow:hidden; min-height:190px; position:relative}
-.slide{
-  display:none; text-align:center; padding:18px;
-}
-.slide.active{display:block; animation:fadeIn .6s ease}
+.slider-section{margin-top:96px}
+.slider{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:20px;padding:26px}
+.slides{overflow:hidden;min-height:210px;position:relative}
+.slide{display:none;text-align:center;padding:20px}
+.slide.active{display:block;animation:fadeIn .6s ease}
 .slider-btn{
-  border:none; cursor:pointer; border-radius:18px; height:64px; font-size:2rem;
-  background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.15);
-  transition:.3s ease;
+  border:none;cursor:pointer;border-radius:18px;height:64px;font-size:2rem;background:rgba(255,255,255,.08);
+  color:#fff;border:1px solid rgba(255,255,255,.15);transition:.3s ease
 }
-.slider-btn:hover{transform:scale(1.06); background:rgba(255,255,255,.14)}
-.contact-lines{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:18px 0 24px}
-.contact-lines span{
-  padding:12px 18px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14)
+.slider-btn:hover{transform:scale(1.06);background:rgba(255,255,255,.14)}
+.timeline{margin-top:96px}
+.timeline-list{display:flex;flex-direction:column;gap:20px}
+.timeline-item{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:24px;border-radius:24px}
+.timeline-item span{font-size:2rem;font-weight:800;color:var(--accent2)}
+.project-card{min-height:350px}
+.project-glow{
+  position:absolute;inset:auto -50px -50px auto;width:180px;height:180px;
+  background:radial-gradient(circle, rgba(0,213,255,.36), transparent 70%);filter:blur(10px)
 }
+.project-image.emoji{
+  width:84px;height:84px;display:grid;place-items:center;font-size:2.2rem;border-radius:20px;margin-bottom:18px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)
+}
+.feature-panel{
+  background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+}
+.text-block::before,.service-card::before,.stat::before,.about-box::before,.project-card::before,.feature-panel::before,.contact-card::before{
+  content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
+}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
+.contact-item{
+  padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)
+}
+.contact-lines{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 24px}
+.contact-lines span,.stack span{
+  padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)
+}
+.stack{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.footer{
+  width:min(1240px, calc(100% - 40px));margin:0 auto 28px;border-radius:20px;text-align:center;padding:18px;color:#dbe2ff
+}
+.inner-page{padding-top:28px}
 .scroll-top{
-  position:fixed; right:20px; bottom:20px; width:52px; height:52px; border:none; border-radius:50%;
-  font-size:1.4rem; cursor:pointer; color:#fff; z-index:120;
-  background:linear-gradient(135deg,var(--accent1),var(--accent2)); box-shadow:0 10px 30px rgba(0,212,255,.25);
-  opacity:0; pointer-events:none; transform:translateY(20px); transition:.3s ease;
+  position:fixed;right:20px;bottom:20px;width:56px;height:56px;border:none;border-radius:50%;
+  font-size:1.4rem;cursor:pointer;color:#fff;z-index:120;background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  box-shadow:0 10px 30px rgba(0,213,255,.25);opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s ease
 }
-.scroll-top.show{opacity:1; pointer-events:auto; transform:translateY(0)}
+.scroll-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes blobMove1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,60px) scale(1.12)}}
-@keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,-60px) scale(1.15)}}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-@keyframes shine{0%{background-position:0% center}100%{background-position:200% center}}
-@keyframes fadeIn{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:translateY(0)}}
-@media (max-width:980px){
-  .hero,.stats,.cards-grid,.about-grid,.projects-grid{grid-template-columns:1fr}
-  .hero{min-height:auto; padding-top:30px}
-  .header{flex-direction:column; gap:14px}
+@keyframes shine{0%{background-position:0% center}100%{background-position:250% center}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-30px) scale(1.08)}}
+@media (max-width:1020px){
+  .hero,.stats,.cards-grid,.about-grid,.projects-grid,.feature-grid,.text-grid,.contact-wrap{grid-template-columns:1fr}
+  .hero{min-height:auto;padding-top:26px}
+  .header{flex-direction:column;gap:14px}
   .slider{grid-template-columns:1fr}
-  .slider-btn{height:52px}
 }
 @media (max-width:640px){
-  .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.stat,.service-card,.project-card,.about-box,.timeline-item,.cta,.quotes-section{padding:20px}
+  .hero h1,.page-hero h1{font-size:2.15rem}
+  .hero-card,.stat,.service-card,.project-card,.about-box,.timeline-item,.cta,.quotes-section,.feature-panel,.text-block,.contact-card{padding:22px}
   .timeline-item{grid-template-columns:1fr}
   .nav{justify-content:center}
-  .header{padding:16px}
 }
-
-  </style>
+</style>
 </head>
 <body>
   <div class="bg-animation"></div>
-  <div class="particles"></div>
+  <div class="grid-overlay"></div>
+  <div class="orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
   <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
-  
+
   <header class="header glass">
     <div class="logo">ARTEM<span>.DEV</span></div>
     <nav class="nav">
@@ -217,7 +251,8 @@ main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
   <section class="page-hero reveal">
     <p class="hero-badge">ПОРТФОЛИО РАБОТ</p>
     <h1>Мои проекты</h1>
-    <p>Здесь собраны примеры направлений, в которых я работаю. В эти карточки можно вставить реальные ссылки на твои сайты, ботов или приложения. Пока страница уже оформлена как готовая витрина портфолио.</p>
+    <p>Здесь собраны примеры направлений, в которых я работаю. Этот раздел можно превратить в полноценную витрину портфолио: добавить реальные сайты, ботов, приложения, интерфейсы, описания задач и ссылки. Сейчас страница уже оформлена так, чтобы она выглядела эффектно, современно и уверенно даже до заполнения настоящими кейсами.</p>
+    <p>Каждую карточку можно заменить на реальную работу. Можно поставить название проекта, краткий разбор, список использованных технологий, ссылку на демо-версию и красивую кнопку перехода. Благодаря этому раздел «Мои проекты» станет центральной частью личного сайта программиста.</p>
   </section>
 
   <section class="projects-grid reveal">
@@ -225,7 +260,8 @@ main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
       <div class="project-glow"></div>
       <div class="project-image emoji">💻</div>
       <h2>Сайт-портфолио</h2>
-      <p>Современный презентационный сайт с яркой анимацией, крупной типографикой, эффектными карточками и плавными переходами.</p>
+      <p>Современный презентационный сайт с яркой анимацией, крупной типографикой, стеклянными блоками, богатым фоном и плавными переходами между секциями.</p>
+      <p>Подходит для личного бренда, веб-разработчика, дизайнера, фрилансера или digital-специалиста, которому важно показать себя уверенно и красиво.</p>
       <a href="#" class="btn btn-secondary">Открыть проект</a>
     </article>
 
@@ -233,7 +269,8 @@ main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
       <div class="project-glow"></div>
       <div class="project-image emoji">🤖</div>
       <h2>Telegram-бот</h2>
-      <p>Бот для автоматизации общения с клиентами, приёма заявок, отображения информации и выполнения различных сценариев.</p>
+      <p>Бот для автоматизации общения, приёма заявок, обработки команд, выдачи информации, уведомлений и упрощения коммуникации с клиентами.</p>
+      <p>Такой проект может использоваться для бизнеса, интернет-магазина, личного бренда, образовательного продукта или любой цифровой услуги.</p>
       <a href="#" class="btn btn-secondary">Открыть проект</a>
     </article>
 
@@ -241,7 +278,8 @@ main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
       <div class="project-glow"></div>
       <div class="project-image emoji">📲</div>
       <h2>Веб-приложение</h2>
-      <p>Интерактивный сервис с современным интерфейсом, логикой взаимодействия и продуманной структурой.</p>
+      <p>Интерактивный сервис с современным интерфейсом, логикой взаимодействия и продуманной структурой. Такой проект может включать личный кабинет, панель управления или онлайн-инструмент.</p>
+      <p>Главная задача — сделать интерфейс понятным, быстрым и визуально качественным, чтобы им было приятно пользоваться каждый день.</p>
       <a href="#" class="btn btn-secondary">Открыть проект</a>
     </article>
 
@@ -249,22 +287,51 @@ main{width:min(1200px, calc(100% - 40px)); margin:40px auto 80px}
       <div class="project-glow"></div>
       <div class="project-image emoji">🚀</div>
       <h2>Лендинг под услугу</h2>
-      <p>Эффектный продающий лендинг с акцентом на визуал, смысловые блоки, анимации и подачу информации.</p>
+      <p>Эффектный продающий лендинг с акцентом на визуал, смыслы, анимации, блоки преимуществ, подачу информации и сильное первое впечатление.</p>
+      <p>Подходит для запуска услуги, рекламы продукта, презентации эксперта, продвижения сервиса или красивой цифровой упаковки предложения.</p>
       <a href="#" class="btn btn-secondary">Открыть проект</a>
     </article>
   </section>
 
+  <section class="section-title reveal">
+    <p>ПОДРОБНЕЕ О КЕЙСАХ</p>
+    <h2>Как можно оформить реальные проекты</h2>
+  </section>
+
+  <section class="text-grid reveal">
+    <div class="text-block glass hover-lift">
+      <h3>Название и задача</h3>
+      <p>В карточке проекта можно указать, какую задачу решал сайт или бот, для кого он создавался и какую проблему должен был закрыть. Это делает портфолио сильнее и профессиональнее.</p>
+    </div>
+    <div class="text-block glass hover-lift">
+      <h3>Технологии и стек</h3>
+      <p>Можно добавить список технологий: HTML, CSS, JavaScript, Python, Telegram API, адаптивная верстка, анимации, формы, логика взаимодействия и другие инструменты.</p>
+    </div>
+    <div class="text-block glass hover-lift">
+      <h3>Ссылка и результат</h3>
+      <p>Хорошо, когда у проекта есть кнопка перехода на живой пример. Это делает страницу живой и показывает, что за красивым описанием стоит реальная работа.</p>
+    </div>
+  </section>
+
   <section class="cta reveal glass">
-    <h2>Сюда можно поставить настоящие ссылки</h2>
-    <p>В каждую карточку легко добавить реальное название проекта, краткое описание и ссылку. Тогда эта страница станет полноценным разделом портфолио с твоими работами.</p>
+    <h2>Этот раздел можно заполнить твоими реальными работами</h2>
+    <p>Я уже подготовил красивую основу. Теперь сюда можно вставить настоящие ссылки на сайты, приложения и ботов, а также сделать карточки ещё более индивидуальными и мощными по подаче.</p>
+    <div class="contact-lines">
+      <span>Портфолио</span>
+      <span>Кейсы</span>
+      <span>Реальные ссылки</span>
+      <span>Красивое оформление</span>
+    </div>
+    <a href="index.html" class="btn btn-primary">Вернуться на главную</a>
   </section>
 </main>
+
 
   <footer class="footer glass">
     <p>© 2026 Картузов Артём Сергеевич — программист, разработчик сайтов, ботов и приложений</p>
   </footer>
-  <script>
 
+  <script>
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.reveal');
   const revealOnScroll = () => {
@@ -285,8 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateY = (x - centerX) / 20;
-      const rotateX = -(y - centerY) / 20;
+      const rotateY = (x - centerX) / 22;
+      const rotateX = -(y - centerY) / 22;
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
     });
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
@@ -304,25 +371,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const quotes = [
-    'Код — это не просто строки. Это способ превратить идею в реальность.',
-    'Хороший сайт должен не только работать, но и впечатлять.',
-    'Анимация оживляет интерфейс и делает проект современнее.',
-    'Сильный визуал помогает запомнить проект с первых секунд.',
-    'Программист создаёт не страницу, а цифровое впечатление.'
+    'Код превращает идею в продукт, а дизайн превращает продукт во впечатление.',
+    'Сильный сайт должен быть не просто полезным, а визуально запоминающимся.',
+    'Анимация делает интерфейс живым и показывает уровень проекта без слов.',
+    'Красивый фон, хорошие цвета и плавность создают ощущение дорогого цифрового продукта.',
+    'Я стараюсь делать проекты так, чтобы они выглядели современно сегодня и уверенно завтра.'
   ];
   const quoteBox = document.getElementById('quoteBox');
   if (quoteBox) {
     let quoteIndex = 0;
     setInterval(() => {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
       quoteBox.style.opacity = '0';
-      quoteBox.style.transform = 'translateY(12px)';
+      quoteBox.style.transform = 'translateY(10px)';
       setTimeout(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
         quoteBox.textContent = quotes[quoteIndex];
         quoteBox.style.opacity = '1';
         quoteBox.style.transform = 'translateY(0)';
-      }, 280);
-    }, 3200);
+      }, 260);
+    }, 3400);
   }
 
   const slides = document.querySelectorAll('.slide');
@@ -330,25 +397,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById('nextSlide');
   if (slides.length) {
     let currentSlide = 0;
-    const showSlide = index => {
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    };
-    const nextSlide = () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    };
-    const prevSlide = () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    };
+    const showSlide = index => slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    const nextSlide = () => { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); };
+    const prevSlide = () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); };
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    setInterval(nextSlide, 4500);
+    setInterval(nextSlide, 4200);
   }
+
+  const titles = document.querySelectorAll('.type-text');
+  titles.forEach(el => {
+    const text = el.getAttribute('data-text') || el.textContent;
+    el.textContent = '';
+    let i = 0;
+    const writer = setInterval(() => {
+      el.textContent += text.charAt(i);
+      i++;
+      if (i >= text.length) clearInterval(writer);
+    }, 35);
+  });
 
   const createParticle = () => {
     const particle = document.createElement('span');
-    particle.className = 'dynamic-particle';
     particle.style.position = 'fixed';
     particle.style.width = `${Math.random() * 6 + 4}px`;
     particle.style.height = particle.style.width;
@@ -356,22 +426,21 @@ document.addEventListener('DOMContentLoaded', () => {
     particle.style.top = `${window.innerHeight + 20}px`;
     particle.style.borderRadius = '50%';
     particle.style.pointerEvents = 'none';
-    particle.style.background = Math.random() > 0.5 ? 'rgba(0, 212, 255, 0.8)' : 'rgba(255, 79, 216, 0.75)';
+    particle.style.background = Math.random() > 0.5 ? 'rgba(0, 213, 255, 0.8)' : 'rgba(255, 79, 210, 0.75)';
     particle.style.boxShadow = '0 0 20px currentColor';
     particle.style.zIndex = '-1';
     particle.style.opacity = '0.7';
-    particle.style.transition = 'transform 5s linear, opacity 5s linear, top 5s linear';
+    particle.style.transition = 'transform 6s linear, opacity 6s linear, top 6s linear';
     document.body.appendChild(particle);
     requestAnimationFrame(() => {
       particle.style.top = '-40px';
-      particle.style.transform = `translateX(${(Math.random() - 0.5) * 200}px) scale(${Math.random() * 1.4 + 0.6})`;
+      particle.style.transform = `translateX(${(Math.random() - 0.5) * 220}px) scale(${Math.random() * 1.5 + 0.6})`;
       particle.style.opacity = '0';
     });
-    setTimeout(() => particle.remove(), 5000);
+    setTimeout(() => particle.remove(), 6000);
   };
-  setInterval(createParticle, 500);
+  setInterval(createParticle, 420);
 });
-
-  </script>
+</script>
 </body>
 </html>
