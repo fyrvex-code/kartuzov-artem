@@ -10,19 +10,9 @@
   <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050816;
-  --bg2:#0d1430;
-  --bg3:#101a3d;
-  --text:#f7f8ff;
-  --muted:#c7d2ff;
-  --accent1:#7a5cff;
-  --accent2:#00d5ff;
-  --accent3:#ff4fd2;
-  --accent4:#7dffb3;
-  --glass:rgba(255,255,255,.08);
-  --glass-strong:rgba(255,255,255,.12);
-  --border:rgba(255,255,255,.18);
-  --shadow:0 20px 60px rgba(0,0,0,.35);
+  --bg:#050816;--bg2:#0d1430;--bg3:#101a3d;--text:#f7f8ff;--muted:#c7d2ff;
+  --accent1:#7a5cff;--accent2:#00d5ff;--accent3:#ff4fd2;--accent4:#7dffb3;
+  --glass:rgba(255,255,255,.08);--border:rgba(255,255,255,.18);--shadow:0 20px 60px rgba(0,0,0,.35)
 }
 html{scroll-behavior:smooth}
 body{
@@ -33,197 +23,140 @@ body{
     radial-gradient(circle at 70% 80%, rgba(255,79,210,.12), transparent 22%),
     radial-gradient(circle at 20% 85%, rgba(125,255,179,.08), transparent 18%),
     linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
+  color:var(--text);min-height:100vh;overflow-x:hidden
 }
 .bg-animation{
-  position:fixed; inset:0; z-index:-4;
+  position:fixed;inset:0;z-index:-4;
   background:
     radial-gradient(circle at 20% 20%, rgba(122,92,255,.08), transparent 25%),
     radial-gradient(circle at 80% 30%, rgba(0,213,255,.07), transparent 25%),
     radial-gradient(circle at 50% 80%, rgba(255,79,210,.07), transparent 28%);
-  background-size:200% 200%;
-  animation:bgShift 14s ease infinite;
+  background-size:200% 200%;animation:bgShift 14s ease infinite
 }
 .grid-overlay{
-  position:fixed; inset:0; z-index:-3; pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size:40px 40px;
-  mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.35));
+  position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:40px 40px;mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.35))
 }
-.orbs{position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none}
-.orb{
-  position:absolute; border-radius:50%; filter:blur(70px); opacity:.22; animation:floatOrb 16s ease-in-out infinite;
-}
+.orbs{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.22;animation:floatOrb 16s ease-in-out infinite}
 .orb1{width:340px;height:340px;left:-60px;top:50px;background:var(--accent1)}
 .orb2{width:280px;height:280px;right:40px;top:140px;background:var(--accent2);animation-delay:-4s}
 .orb3{width:320px;height:320px;left:30%;bottom:-100px;background:var(--accent3);animation-delay:-8s}
-.glass{
-  background:var(--glass);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-}
+.glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);box-shadow:var(--shadow)}
 .header{
-  width:calc(100% - 40px); max-width:1240px; margin:20px auto 0;
-  border-radius:24px; padding:18px 26px; display:flex; justify-content:space-between;
-  align-items:center; position:sticky; top:14px; z-index:50;
-  background:linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
+  width:calc(100% - 40px);max-width:1260px;margin:20px auto 0;border-radius:24px;padding:18px 26px;
+  display:flex;justify-content:space-between;align-items:center;position:sticky;top:14px;z-index:50;
+  background:linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06))
 }
 .logo{font-family:'Orbitron',sans-serif;font-size:1.55rem;font-weight:700;letter-spacing:1px}
 .logo span{color:var(--accent2)}
-.nav{display:flex;gap:12px;flex-wrap:wrap}
+.nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .nav a{
-  color:var(--text);text-decoration:none;padding:11px 17px;border-radius:999px;transition:.35s ease;
-  position:relative;font-weight:600
+  color:var(--text);text-decoration:none;padding:11px 15px;border-radius:999px;transition:.35s ease;position:relative;
+  font-weight:600;font-size:.95rem
 }
 .nav a::after{
   content:"";position:absolute;left:16px;right:16px;bottom:7px;height:2px;border-radius:10px;
-  background:linear-gradient(90deg,var(--accent2),var(--accent3));transform:scaleX(0);transform-origin:center;transition:.35s ease
+  background:linear-gradient(90deg,var(--accent2),var(--accent3));transform:scaleX(0);transition:.35s ease
 }
-.nav a:hover,.nav a.active{
-  background:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 0 25px rgba(0,213,255,.18)
-}
+.nav a:hover,.nav a.active{background:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 0 25px rgba(0,213,255,.18)}
 .nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
-main{width:min(1240px, calc(100% - 40px)); margin:44px auto 90px}
-.hero,.page-hero{
-  display:grid;grid-template-columns:1.18fr .82fr;gap:30px;align-items:center;min-height:80vh
-}
+main{width:min(1260px, calc(100% - 40px));margin:44px auto 90px}
+.hero,.page-hero{display:grid;grid-template-columns:1.18fr .82fr;gap:30px;align-items:center;min-height:80vh}
 .page-hero{grid-template-columns:1fr;min-height:auto;padding:58px 0 16px}
-.hero-badge,.mini-badge{
-  display:inline-block;padding:10px 16px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);
-  color:var(--accent2);font-size:.88rem;font-weight:700;letter-spacing:2px;margin-bottom:18px
+.hero-badge{
+  display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.07);color:var(--accent2);font-size:.88rem;font-weight:700;letter-spacing:2px;margin-bottom:18px
 }
-.hero h1,.page-hero h1{font-size:clamp(2.5rem,5vw,5.2rem);line-height:1.02;margin-bottom:16px}
-.hero h1 span{
+.hero h1,.page-hero h1{font-size:clamp(2.4rem,5vw,5.1rem);line-height:1.02;margin-bottom:16px}
+.hero h1 span,.gradient-text{
   background:linear-gradient(90deg,var(--accent2),var(--accent3),#ffffff,var(--accent4));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:250% auto;animation:shine 6s linear infinite
 }
 .hero h2{font-size:clamp(1.2rem,2.2vw,2rem);color:var(--muted);margin-bottom:18px}
-.hero-description,.page-hero p,.service-card p,.project-card p,.about-box p,.stat p,.cta p,.timeline-item p,.slide p,.feature-panel p,.text-block p,.contact-card p{
-  font-size:1.02rem;line-height:1.9;color:#edf0ff
-}
-.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
+p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.cta p{font-size:1.02rem;line-height:1.9;color:#edf0ff}
+.hero-buttons,.chip-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
-  padding:14px 24px;border-radius:16px;font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px 24px;border-radius:16px;
+  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
 }
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card{
-  border-radius:30px;padding:34px;min-height:350px;display:flex;flex-direction:column;justify-content:center;gap:16px;position:relative;overflow:hidden
+.hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card{
+  border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
-.hero-card::before{
-  content:"";position:absolute;inset:-2px;background:conic-gradient(from 180deg, transparent, rgba(0,213,255,.3), transparent, rgba(255,79,210,.25), transparent);
-  filter:blur(16px);opacity:.75
+.hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.faq-item::before,.contact-card::before{
+  content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
-.hero-card > *{position:relative}
 .code-line{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2vw,1.65rem);opacity:.98}
 .code-line.accent{color:var(--accent2);text-shadow:0 0 20px rgba(0,213,255,.45)}
-.stats,.cards-grid,.projects-grid,.about-grid,.feature-grid,.text-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px
-}
-.projects-grid{grid-template-columns:repeat(2,1fr)}
-.stat,.service-card,.project-card,.about-box,.feature-panel,.text-block,.contact-card{
-  border-radius:26px;padding:28px;position:relative;overflow:hidden
-}
-.stat h3,.service-card h3,.project-card h2,.about-box h2,.timeline-item h3,.cta h2,.slide h3,.feature-panel h3,.text-block h3,.contact-card h3{
-  margin-bottom:14px;font-size:1.35rem
-}
-.section-title{margin-top:96px;margin-bottom:20px}
-.section-title.compact{margin-top:0}
+.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid{display:grid;gap:22px;margin-top:36px}
+.grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
+.grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
+.projects-grid{grid-template-columns:repeat(3,1fr)}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.faq-item h3,.cta h2{margin-bottom:14px;font-size:1.35rem}
+.section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
 .icon{font-size:2rem;margin-bottom:14px}
-.hover-lift{transition:transform .45s ease, box-shadow .45s ease, border-color .45s ease}
-.hover-lift:hover{
-  transform:translateY(-10px) scale(1.01);
-  box-shadow:0 20px 50px rgba(0,0,0,.35),0 0 30px rgba(111,91,255,.18);
-  border-color:rgba(255,255,255,.3)
+.project-thumb{
+  width:86px;height:86px;border-radius:22px;display:grid;place-items:center;font-size:2.2rem;margin-bottom:18px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)
 }
-.reveal{opacity:0;transform:translateY(42px);transition:opacity .9s ease,transform .9s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.floating{animation:floatCard 5s ease-in-out infinite}
-.quotes-section,.cta,.slider,.contact-card{
-  border-radius:30px
-}
-.quotes-section,.cta{margin-top:96px;padding:34px;text-align:center}
-.quote-box{
-  min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;
-  font-size:1.38rem;line-height:1.6;color:#fff;transition:.4s ease
-}
-.slider-section{margin-top:96px}
-.slider{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:20px;padding:26px}
-.slides{overflow:hidden;min-height:210px;position:relative}
-.slide{display:none;text-align:center;padding:20px}
-.slide.active{display:block;animation:fadeIn .6s ease}
-.slider-btn{
-  border:none;cursor:pointer;border-radius:18px;height:64px;font-size:2rem;background:rgba(255,255,255,.08);
-  color:#fff;border:1px solid rgba(255,255,255,.15);transition:.3s ease
-}
-.slider-btn:hover{transform:scale(1.06);background:rgba(255,255,255,.14)}
-.timeline{margin-top:96px}
-.timeline-list{display:flex;flex-direction:column;gap:20px}
-.timeline-item{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:24px;border-radius:24px}
-.timeline-item span{font-size:2rem;font-weight:800;color:var(--accent2)}
-.project-card{min-height:350px}
 .project-glow{
   position:absolute;inset:auto -50px -50px auto;width:180px;height:180px;
   background:radial-gradient(circle, rgba(0,213,255,.36), transparent 70%);filter:blur(10px)
 }
-.project-image.emoji{
-  width:84px;height:84px;display:grid;place-items:center;font-size:2.2rem;border-radius:20px;margin-bottom:18px;
-  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)
+.tag{
+  display:inline-flex;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);font-size:.92rem
 }
-.feature-panel{
-  background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
-}
-.text-block::before,.service-card::before,.stat::before,.about-box::before,.project-card::before,.feature-panel::before,.contact-card::before{
-  content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
-  background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
-}
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
-.contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
-.contact-item{
-  padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)
-}
-.contact-lines{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 24px}
-.contact-lines span,.stack span{
-  padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)
-}
-.stack{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.footer{
-  width:min(1240px, calc(100% - 40px));margin:0 auto 28px;border-radius:20px;text-align:center;padding:18px;color:#dbe2ff
-}
-.inner-page{padding-top:28px}
+.hover-lift{transition:transform .45s ease, box-shadow .45s ease, border-color .45s ease}
+.hover-lift:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 20px 50px rgba(0,0,0,.35),0 0 30px rgba(111,91,255,.18);border-color:rgba(255,255,255,.3)}
+.reveal{opacity:0;transform:translateY(42px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.floating{animation:floatCard 5s ease-in-out infinite}
+.timeline-list{display:flex;flex-direction:column;gap:20px;margin-top:20px}
+.timeline-item{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:24px;border-radius:24px}
+.timeline-item span{font-size:2rem;font-weight:800;color:var(--accent2)}
+.cta{text-align:center;margin-top:92px}
+.footer{width:min(1260px, calc(100% - 40px));margin:0 auto 28px;border-radius:20px;text-align:center;padding:18px;color:#dbe2ff}
 .scroll-top{
-  position:fixed;right:20px;bottom:20px;width:56px;height:56px;border:none;border-radius:50%;
-  font-size:1.4rem;cursor:pointer;color:#fff;z-index:120;background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  box-shadow:0 10px 30px rgba(0,213,255,.25);opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s ease
+  position:fixed;right:20px;bottom:20px;width:56px;height:56px;border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;color:#fff;
+  z-index:120;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 10px 30px rgba(0,213,255,.25);
+  opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s ease
 }
 .scroll-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.detail-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.preview-box{
+  min-height:320px;border-radius:28px;padding:30px;display:flex;align-items:center;justify-content:center;text-align:center;
+  background:
+    radial-gradient(circle at top left, rgba(0,213,255,.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,79,210,.16), transparent 30%),
+    rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14)
+}
+.preview-box .big-icon{font-size:5rem}
+.detail-list{margin:16px 0 0 18px}
+.detail-list li{margin-bottom:10px}
+.contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
+.contact-item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
 @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes shine{0%{background-position:0% center}100%{background-position:250% center}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-30px) scale(1.08)}}
-@media (max-width:1020px){
-  .hero,.stats,.cards-grid,.about-grid,.projects-grid,.feature-grid,.text-grid,.contact-wrap{grid-template-columns:1fr}
-  .hero{min-height:auto;padding-top:26px}
-  .header{flex-direction:column;gap:14px}
-  .slider{grid-template-columns:1fr}
+@media (max-width:1100px){
+  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid{grid-template-columns:1fr}
+  .header{flex-direction:column;gap:14px}.hero{min-height:auto;padding-top:26px}
 }
 @media (max-width:640px){
-  .hero h1,.page-hero h1{font-size:2.15rem}
-  .hero-card,.stat,.service-card,.project-card,.about-box,.timeline-item,.cta,.quotes-section,.feature-panel,.text-block,.contact-card{padding:22px}
+  .hero h1,.page-hero h1{font-size:2.1rem}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.cta,.faq-item,.contact-card,.timeline-item{padding:22px}
   .timeline-item{grid-template-columns:1fr}
-  .nav{justify-content:center}
 }
 </style>
 </head>
@@ -236,119 +169,34 @@ main{width:min(1240px, calc(100% - 40px)); margin:44px auto 90px}
     <div class="orb orb3"></div>
   </div>
   <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
-
   <header class="header glass">
     <div class="logo">ARTEM<span>.DEV</span></div>
-    <nav class="nav">
-      <a href="index.html" >Главная</a>
-      <a href="about.html" class="active">Обо мне</a>
-      <a href="projects.html" >Мои проекты</a>
-    </nav>
+    <nav class="nav"><a href="index.html">Главная</a><a href="about.html" class="active">Обо мне</a><a href="projects.html">Мои проекты</a><a href="services.html">Услуги</a><a href="skills.html">Навыки</a><a href="contacts.html">Контакты</a></nav>
   </header>
-
   
-<main class="inner-page">
+<main>
   <section class="page-hero reveal">
     <p class="hero-badge">ОБО МНЕ</p>
-    <h1>Картузов Артём Сергеевич</h1>
-    <p>Я программист, который умеет делать сайты, ботов и приложения. Мне нравится создавать проекты, где соединяются код, дизайн, визуальный стиль, современная атмосфера и удобство для пользователя. Я не люблю скучные страницы без характера, поэтому стараюсь делать интерфейсы выразительными, живыми и запоминающимися.</p>
-    <p>Для меня важно, чтобы проект не просто работал, а производил впечатление. Когда пользователь открывает сайт, он должен сразу почувствовать уровень: красивые цвета, уверенная композиция, понятный текст, насыщенный фон, аккуратная анимация и сильная подача. Именно это отличает обычную страницу от качественного цифрового продукта.</p>
-    <p>Мне нравится работать с визуально насыщенными решениями, но при этом сохранять удобство. Я стараюсь, чтобы каждое решение было не только красивым, но и логичным, понятным и готовым к реальному использованию.</p>
+    <h1>Кто я и как подхожу к работе</h1>
+    <p>Я программист, который умеет делать сайты, ботов и приложения. Мне нравится, когда проект выглядит не просто рабочим, а действительно визуально сильным. Поэтому я уделяю внимание цветам, композиции, фону, интерактиву, текстам и общему ощущению современности.</p>
+    <p>Я стараюсь делать сайты, где каждая секция выглядит продуманной: блоки не случайны, карточки не пустые, анимации не лишние, а фон и цвета создают атмосферу. Такой подход позволяет получить сайт, который не только показывает информацию, но и производит впечатление.</p>
   </section>
-
-  <section class="about-grid reveal">
-    <div class="glass about-box hover-lift">
-      <h2>Мой подход</h2>
-      <p>В каждом проекте я стремлюсь соединить техническую часть и визуальную подачу. Код должен быть рабочим, интерфейс — понятным, а общий стиль — сильным и современным. Такой баланс помогает делать проекты, которые действительно хочется смотреть и использовать.</p>
-    </div>
-    <div class="glass about-box hover-lift">
-      <h2>Что я создаю</h2>
-      <p>Я разрабатываю сайты, лендинги, многостраничные проекты, телеграм-ботов, интерфейсы и цифровые решения, которые можно использовать для бизнеса, личного бренда, презентации услуг или запуска онлайн-продукта.</p>
-    </div>
-    <div class="glass about-box hover-lift">
-      <h2>Почему это важно</h2>
-      <p>Сегодня конкуренция высокая, и простого наличия сайта уже недостаточно. Важно, чтобы проект выглядел уверенно, отличался от шаблонов и вызывал доверие с первых секунд. Именно на это я и делаю акцент.</p>
-    </div>
+  <section class="section-title reveal"><p>МОЙ ПОДХОД</p><h2>Что для меня важно в проекте</h2></section>
+  <section class="grid-3 reveal">
+    <div class="card glass hover-lift"><h3>Стиль</h3><p>Проект должен выглядеть современно, аккуратно и уверенно. Хороший визуал сразу повышает ценность сайта.</p></div>
+    <div class="card glass hover-lift"><h3>Логика</h3><p>Пользователь должен понимать, куда нажимать, что читать и как двигаться по сайту без путаницы.</p></div>
+    <div class="card glass hover-lift"><h3>Подача</h3><p>Даже сильный текст нужно красиво упаковать. Подача делает информацию более живой и интересной.</p></div>
   </section>
-
-  <section class="section-title reveal">
-    <p>МОЯ ФИЛОСОФИЯ</p>
-    <h2>Что для меня значит хороший цифровой продукт</h2>
-  </section>
-
-  <section class="text-grid reveal">
-    <div class="text-block glass hover-lift">
-      <h3>Сильная визуальная энергия</h3>
-      <p>Когда проект выглядит современно, ярко и стильно, он сразу начинает работать лучше. Визуальная энергия помогает удерживать внимание, вызывать интерес и подчеркивать уровень специалиста или бренда.</p>
-    </div>
-    <div class="text-block glass hover-lift">
-      <h3>Понятная структура</h3>
-      <p>Даже самый красивый интерфейс теряет силу, если он плохо организован. Поэтому я уделяю внимание тому, как пользователь двигается по странице, как воспринимает текст и как понимает основные смыслы.</p>
-    </div>
-    <div class="text-block glass hover-lift">
-      <h3>Атмосфера современности</h3>
-      <p>Мне нравится делать сайты, в которых чувствуется цифровая глубина: фон, свечение, анимации, контрастные элементы и ощущение движения. Всё это помогает сайту выглядеть намного богаче.</p>
-    </div>
-  </section>
-
-  <section class="timeline reveal">
-    <div class="section-title compact">
-      <p>МОИ НАПРАВЛЕНИЯ</p>
-      <h2>Основные сферы разработки</h2>
-    </div>
-    <div class="timeline-list">
-      <div class="timeline-item glass hover-lift">
-        <span>01</span>
-        <div>
-          <h3>Frontend и визуальная часть</h3>
-          <p>Красивые интерфейсы, адаптивная верстка, насыщенные эффекты, привлекательные блоки, типографика, цветовые акценты и современный внешний вид сайта.</p>
-        </div>
-      </div>
-      <div class="timeline-item glass hover-lift">
-        <span>02</span>
-        <div>
-          <h3>Боты и автоматизация</h3>
-          <p>Создание ботов для общения с клиентами, обработки команд, заявок, уведомлений, автоматизации повторяющихся действий и улучшения цифрового взаимодействия.</p>
-        </div>
-      </div>
-      <div class="timeline-item glass hover-lift">
-        <span>03</span>
-        <div>
-          <h3>Приложения и сервисы</h3>
-          <p>Разработка интерактивных решений, личных кабинетов, сервисных панелей и других интерфейсов, где важны логика, удобство и аккуратная визуальная подача.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-wrap reveal">
-    <div class="contact-card glass hover-lift">
-      <h3>Что я ценю в проекте</h3>
-      <p>Я люблю, когда проект выглядит целостно: фон, меню, кнопки, карточки, текст и анимации работают как одна система. Тогда сайт не распадается на части, а ощущается как законченный продукт.</p>
-      <div class="stack">
-        <span>Стиль</span>
-        <span>Логика</span>
-        <span>Подача</span>
-        <span>Анимация</span>
-      </div>
-    </div>
-    <div class="contact-card glass hover-lift">
-      <h3>Что можно добавить дальше</h3>
-      <p>Этот сайт можно ещё усилить: вставить реальные проекты, контакты, форму обратной связи, иконки соцсетей, галерею работ, отзывы, достижения и отдельную страницу услуг.</p>
-      <div class="contact-list">
-        <div class="contact-item">Добавить реальные ссылки на проекты</div>
-        <div class="contact-item">Вставить Telegram, GitHub или email</div>
-        <div class="contact-item">Сделать страницу контактов</div>
-      </div>
-    </div>
+  <section class="timeline-list reveal">
+    <div class="timeline-item glass hover-lift"><span>01</span><div><h3>Frontend</h3><p>Верстка, анимации, карточки, меню, фоны, декоративные эффекты и современный интерфейс.</p></div></div>
+    <div class="timeline-item glass hover-lift"><span>02</span><div><h3>Боты</h3><p>Умные сценарии, автоматизация, приём заявок, информационные команды и полезные функции.</p></div></div>
+    <div class="timeline-item glass hover-lift"><span>03</span><div><h3>Приложения</h3><p>Интерактивные решения и сервисы, где важны удобство, логика и качественная визуальная подача.</p></div></div>
   </section>
 </main>
-
 
   <footer class="footer glass">
     <p>© 2026 Картузов Артём Сергеевич — программист, разработчик сайтов, ботов и приложений</p>
   </footer>
-
   <script>
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.reveal');
@@ -387,53 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', toggleButton);
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
-
-  const quotes = [
-    'Код превращает идею в продукт, а дизайн превращает продукт во впечатление.',
-    'Сильный сайт должен быть не просто полезным, а визуально запоминающимся.',
-    'Анимация делает интерфейс живым и показывает уровень проекта без слов.',
-    'Красивый фон, хорошие цвета и плавность создают ощущение дорогого цифрового продукта.',
-    'Я стараюсь делать проекты так, чтобы они выглядели современно сегодня и уверенно завтра.'
-  ];
-  const quoteBox = document.getElementById('quoteBox');
-  if (quoteBox) {
-    let quoteIndex = 0;
-    setInterval(() => {
-      quoteBox.style.opacity = '0';
-      quoteBox.style.transform = 'translateY(10px)';
-      setTimeout(() => {
-        quoteIndex = (quoteIndex + 1) % quotes.length;
-        quoteBox.textContent = quotes[quoteIndex];
-        quoteBox.style.opacity = '1';
-        quoteBox.style.transform = 'translateY(0)';
-      }, 260);
-    }, 3400);
-  }
-
-  const slides = document.querySelectorAll('.slide');
-  const prevBtn = document.getElementById('prevSlide');
-  const nextBtn = document.getElementById('nextSlide');
-  if (slides.length) {
-    let currentSlide = 0;
-    const showSlide = index => slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    const nextSlide = () => { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); };
-    const prevSlide = () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); };
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    setInterval(nextSlide, 4200);
-  }
-
-  const titles = document.querySelectorAll('.type-text');
-  titles.forEach(el => {
-    const text = el.getAttribute('data-text') || el.textContent;
-    el.textContent = '';
-    let i = 0;
-    const writer = setInterval(() => {
-      el.textContent += text.charAt(i);
-      i++;
-      if (i >= text.length) clearInterval(writer);
-    }, 35);
-  });
 
   const createParticle = () => {
     const particle = document.createElement('span');
