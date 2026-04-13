@@ -25,6 +25,7 @@ body{
     linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
   color:var(--text);min-height:100vh;overflow-x:hidden
 }
+body.cookies-locked{overflow:hidden}
 .bg-animation{
   position:fixed;inset:0;z-index:-4;
   background:
@@ -75,31 +76,31 @@ main{width:min(1260px, calc(100% - 40px));margin:44px auto 90px}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:250% auto;animation:shine 6s linear infinite
 }
 .hero h2{font-size:clamp(1.2rem,2.2vw,2rem);color:var(--muted);margin-bottom:18px}
-p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.cta p,.policy-card li{font-size:1.02rem;line-height:1.9;color:#edf0ff}
-.hero-buttons,.chip-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.policy-card li,.feature-card p,.long-card p{font-size:1.02rem;line-height:1.9;color:#edf0ff}
+.hero-buttons,.chip-row,.info-pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px 24px;border-radius:16px;
-  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
+  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease;border:none;cursor:pointer
 }
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card{
+.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.feature-card,.long-card{
   border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
 .hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before{
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before,.feature-card::before,.long-card::before{
   content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
 .code-line{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2vw,1.65rem);opacity:.98}
 .code-line.accent{color:var(--accent2);text-shadow:0 0 20px rgba(0,213,255,.45)}
-.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid{display:grid;gap:22px;margin-top:36px}
-.grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
-.grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
+.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid,.feature-grid,.long-grid{display:grid;gap:22px;margin-top:36px}
+.grid-3,.services-grid,.feature-grid{grid-template-columns:repeat(3,1fr)}
+.grid-2,.contact-grid,.long-grid{grid-template-columns:repeat(2,1fr)}
 .projects-grid{grid-template-columns:repeat(3,1fr)}
 .policy-grid{grid-template-columns:1fr}
-.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2{margin-bottom:14px;font-size:1.35rem}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2,.feature-card h3,.long-card h3{margin-bottom:14px;font-size:1.35rem}
 .section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
@@ -150,17 +151,29 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
 .contact-item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
 .note{margin-top:24px;padding:18px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.cookie-overlay{
+  position:fixed;inset:0;background:rgba(4,8,20,.82);backdrop-filter:blur(8px);display:none;
+  align-items:center;justify-content:center;z-index:1000;padding:20px
+}
+.cookie-overlay.show{display:flex}
+.cookie-box{
+  width:min(720px,100%);padding:28px;border-radius:28px;background:rgba(12,18,44,.95);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 20px 60px rgba(0,0,0,.45)
+}
+.cookie-box h2{margin-bottom:14px;font-size:1.8rem}
+.cookie-box p{margin-bottom:14px}
+.cookie-box .btn{margin-top:8px}
 @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes shine{0%{background-position:0% center}100%{background-position:250% center}}
 @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-30px) scale(1.08)}}
 @media (max-width:1100px){
-  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid{grid-template-columns:1fr}
+  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.feature-grid,.long-grid{grid-template-columns:1fr}
   .header{flex-direction:column;gap:14px}.hero{min-height:auto;padding-top:26px}
 }
 @media (max-width:640px){
   .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item{padding:22px}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item,.feature-card,.long-card,.cookie-box{padding:22px}
   .timeline-item{grid-template-columns:1fr}
 }
 </style>
@@ -183,20 +196,20 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
   <section class="page-hero reveal">
     <p class="hero-badge">КОНТАКТЫ</p>
     <h1>Связь и сотрудничество</h1>
-    <p>Сюда можно добавить реальные контакты: Telegram, email, GitHub, Discord или любые другие способы связи. Сейчас страница уже подготовлена как полноценная часть многостраничного портфолио.</p>
+    <p>Сюда можно добавить реальные контакты: Telegram, email, GitHub, Discord или любые другие способы связи. Сейчас на странице уже стоят твои актуальные данные для быстрой связи.</p>
   </section>
   <section class="contact-grid reveal">
     <div class="contact-card glass hover-lift">
       <h3>Контактная информация</h3>
       <div class="contact-list">
         <div class="contact-item">Имя: Картузов Артём Сергеевич</div>
-        <div class="contact-item">GitHub Pages проекты уже добавлены</div>
-        <div class="contact-item">Портфолио можно расширять дальше</div>
+        <div class="contact-item">Телефон: +79585017488</div>
+        <div class="contact-item">Telegram: Kartuzov_dev</div>
       </div>
     </div>
     <div class="contact-card glass hover-lift">
       <h3>Что можно добавить дальше</h3>
-      <p>Сюда можно вставить Telegram, email, GitHub, форму связи, кнопки соцсетей и дополнительные контакты для заказов или сотрудничества.</p>
+      <p>Сюда можно вставить email, GitHub, форму связи, кнопки соцсетей и дополнительные контакты для заказов или сотрудничества, но уже сейчас страница готова к использованию.</p>
     </div>
   </section>
 </main>
@@ -206,6 +219,16 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
     <span class="footer-line">© 2026</span>
     <span class="footer-line">Все права защищены • <a href="privacy.html">Политика конфиденциальности</a></span>
   </footer>
+
+  
+  <div class="cookie-overlay" id="cookieOverlay">
+    <div class="cookie-box">
+      <h2>Использование cookie-файлов</h2>
+      <p>Сайт использует cookie-файлы и технические данные для корректной работы страниц, сохранения пользовательских действий и повышения удобства использования сайта.</p>
+      <p>Нажимая кнопку ниже, ты подтверждаешь согласие на использование cookie-файлов в соответствии с Политикой конфиденциальности.</p>
+      <button class="btn btn-primary" id="acceptCookiesBtn">Принять и продолжить</button>
+    </div>
+  </div>
 
   <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -244,6 +267,36 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton();
     window.addEventListener('scroll', toggleButton);
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', () => {
+      try {
+        const url = new URL(link.href, window.location.href);
+        const sameOrigin = url.origin === window.location.origin;
+        const isHtml = url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname === '';
+        if (sameOrigin && isHtml) sessionStorage.setItem('skipCookieOnce', '1');
+      } catch (e) {}
+    });
+  });
+
+  const cookieOverlay = document.getElementById('cookieOverlay');
+  const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
+  const shouldSkipCookie = sessionStorage.getItem('skipCookieOnce') === '1';
+
+  if (cookieOverlay && !shouldSkipCookie) {
+    cookieOverlay.classList.add('show');
+    document.body.classList.add('cookies-locked');
+  }
+  if (shouldSkipCookie) {
+    sessionStorage.removeItem('skipCookieOnce');
+  }
+
+  if (acceptCookiesBtn && cookieOverlay) {
+    acceptCookiesBtn.addEventListener('click', () => {
+      cookieOverlay.classList.remove('show');
+      document.body.classList.remove('cookies-locked');
+    });
   }
 
   const createParticle = () => {

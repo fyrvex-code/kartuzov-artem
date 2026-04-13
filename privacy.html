@@ -25,6 +25,7 @@ body{
     linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
   color:var(--text);min-height:100vh;overflow-x:hidden
 }
+body.cookies-locked{overflow:hidden}
 .bg-animation{
   position:fixed;inset:0;z-index:-4;
   background:
@@ -75,31 +76,31 @@ main{width:min(1260px, calc(100% - 40px));margin:44px auto 90px}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:250% auto;animation:shine 6s linear infinite
 }
 .hero h2{font-size:clamp(1.2rem,2.2vw,2rem);color:var(--muted);margin-bottom:18px}
-p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.cta p,.policy-card li{font-size:1.02rem;line-height:1.9;color:#edf0ff}
-.hero-buttons,.chip-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.policy-card li,.feature-card p,.long-card p{font-size:1.02rem;line-height:1.9;color:#edf0ff}
+.hero-buttons,.chip-row,.info-pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px 24px;border-radius:16px;
-  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
+  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease;border:none;cursor:pointer
 }
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card{
+.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.feature-card,.long-card{
   border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
 .hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before{
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before,.feature-card::before,.long-card::before{
   content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
 .code-line{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2vw,1.65rem);opacity:.98}
 .code-line.accent{color:var(--accent2);text-shadow:0 0 20px rgba(0,213,255,.45)}
-.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid{display:grid;gap:22px;margin-top:36px}
-.grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
-.grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
+.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid,.feature-grid,.long-grid{display:grid;gap:22px;margin-top:36px}
+.grid-3,.services-grid,.feature-grid{grid-template-columns:repeat(3,1fr)}
+.grid-2,.contact-grid,.long-grid{grid-template-columns:repeat(2,1fr)}
 .projects-grid{grid-template-columns:repeat(3,1fr)}
 .policy-grid{grid-template-columns:1fr}
-.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2{margin-bottom:14px;font-size:1.35rem}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2,.feature-card h3,.long-card h3{margin-bottom:14px;font-size:1.35rem}
 .section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
@@ -150,17 +151,29 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
 .contact-item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
 .note{margin-top:24px;padding:18px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.cookie-overlay{
+  position:fixed;inset:0;background:rgba(4,8,20,.82);backdrop-filter:blur(8px);display:none;
+  align-items:center;justify-content:center;z-index:1000;padding:20px
+}
+.cookie-overlay.show{display:flex}
+.cookie-box{
+  width:min(720px,100%);padding:28px;border-radius:28px;background:rgba(12,18,44,.95);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 20px 60px rgba(0,0,0,.45)
+}
+.cookie-box h2{margin-bottom:14px;font-size:1.8rem}
+.cookie-box p{margin-bottom:14px}
+.cookie-box .btn{margin-top:8px}
 @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes shine{0%{background-position:0% center}100%{background-position:250% center}}
 @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-30px) scale(1.08)}}
 @media (max-width:1100px){
-  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid{grid-template-columns:1fr}
+  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.feature-grid,.long-grid{grid-template-columns:1fr}
   .header{flex-direction:column;gap:14px}.hero{min-height:auto;padding-top:26px}
 }
 @media (max-width:640px){
   .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item{padding:22px}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item,.feature-card,.long-card,.cookie-box{padding:22px}
   .timeline-item{grid-template-columns:1fr}
 }
 </style>
@@ -183,102 +196,86 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
   <section class="page-hero reveal">
     <p class="hero-badge">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</p>
     <h1>Политика обработки персональных данных</h1>
-    <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта. Документ подготовлен как публичная политика оператора в отношении обработки персональных данных. Перед публикацией обязательно подставь свои реальные сведения об операторе, контактный email, адрес и фактический перечень собираемых данных.</p>
+    <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта. Документ подготовлен как публичная политика оператора в отношении обработки персональных данных.</p>
     <div class="note">
-      <p><strong>Заполни перед публикацией:</strong> Ф.И.О. или наименование оператора, адрес, email для обращений, фактические формы на сайте, перечень файлов cookie, используемые сервисы аналитики и хостинга.</p>
+      <p><strong>Важно:</strong> при публикации сайта рекомендуется дополнительно указать полный адрес оператора, email для обращений и перечень реально используемых сервисов аналитики, если они есть.</p>
     </div>
   </section>
-
   <section class="policy-grid reveal">
     <div class="policy-card glass hover-lift">
       <h2>1. Общие положения</h2>
       <p>1.1. Настоящая Политика действует в отношении всей информации, которую оператор может получить о пользователе при использовании сайта.</p>
-      <p>1.2. Оператор персональных данных: <strong>Картузов Артём Сергеевич / укажи точные данные оператора</strong>.</p>
-      <p>1.3. Контактный адрес для обращений по вопросам персональных данных: <strong>укажи email</strong>.</p>
-      <p>1.4. Политика применяется ко всем страницам сайта и ко всем формам, через которые пользователь передаёт свои данные.</p>
+      <p>1.2. Оператор персональных данных: <strong>Картузов Артём Сергеевич</strong>.</p>
+      <p>1.3. Контакты оператора для обращений по вопросам персональных данных: <strong>Телефон +79585017488, Telegram Kartuzov_dev</strong>.</p>
     </div>
-
     <div class="policy-card glass hover-lift">
       <h2>2. Какие данные могут обрабатываться</h2>
       <ul>
         <li>Фамилия, имя, отчество, если пользователь указывает их в форме.</li>
-        <li>Номер телефона, адрес электронной почты, ник в мессенджере или иные контактные данные.</li>
-        <li>Содержание сообщения, заявки, обращения или комментария, которые пользователь отправляет через сайт.</li>
-        <li>Технические данные: IP-адрес, сведения о браузере, устройстве, дата и время посещения, источник перехода, cookie и иные данные веб-аналитики — если они фактически собираются на сайте.</li>
+        <li>Номер телефона, Telegram, адрес электронной почты и иные контактные данные.</li>
+        <li>Содержание сообщения, заявки или обращения.</li>
+        <li>Cookie-файлы, IP-адрес, сведения о браузере, устройстве и времени посещения — если такие данные обрабатываются технически для работы сайта.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>3. Цели обработки персональных данных</h2>
+      <h2>3. Цели обработки</h2>
       <ul>
-        <li>Обратная связь с пользователем и ответы на обращения.</li>
-        <li>Запись на услугу, консультацию или занятие.</li>
-        <li>Исполнение договорённостей с пользователем и оказание услуг.</li>
-        <li>Улучшение работы сайта, анализ посещаемости и повышение удобства использования.</li>
-        <li>Соблюдение требований законодательства Российской Федерации.</li>
+        <li>Обратная связь с пользователем.</li>
+        <li>Обработка заявок и обращений.</li>
+        <li>Оказание услуг и взаимодействие с пользователем.</li>
+        <li>Обеспечение корректной работы сайта и сохранение пользовательских действий.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>4. Правовые основания обработки</h2>
+      <h2>4. Правовые основания</h2>
       <ul>
-        <li>Согласие субъекта персональных данных на обработку его персональных данных.</li>
-        <li>Необходимость обработки для заключения и исполнения договора или для совершения действий по инициативе пользователя до заключения договора.</li>
-        <li>Иные основания, предусмотренные законодательством Российской Федерации.</li>
+        <li>Согласие пользователя на обработку персональных данных.</li>
+        <li>Необходимость обработки для исполнения договорённостей и оказания услуг.</li>
+        <li>Иные основания, предусмотренные законодательством.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>5. Порядок и условия обработки</h2>
+      <h2>5. Порядок обработки и защиты</h2>
       <ul>
-        <li>Обработка персональных данных осуществляется законно, справедливо и ограничивается достижением конкретных, заранее определённых и законных целей.</li>
-        <li>Оператор обрабатывает только те данные, которые необходимы для заявленных целей обработки.</li>
-        <li>Данные могут обрабатываться с использованием средств автоматизации и без их использования.</li>
-        <li>Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования, предоставления и иных неправомерных действий.</li>
+        <li>Обработка персональных данных осуществляется законно и только для конкретных целей.</li>
+        <li>Оператор принимает необходимые меры для защиты персональных данных от неправомерного доступа, изменения, уничтожения и распространения.</li>
+        <li>Обработка может осуществляться как с использованием автоматизации, так и без неё.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>6. Передача персональных данных третьим лицам</h2>
+      <h2>6. Передача третьим лицам</h2>
       <ul>
-        <li>Оператор не раскрывает и не передаёт персональные данные третьим лицам без согласия пользователя, за исключением случаев, прямо предусмотренных законом.</li>
-        <li>Данные могут передаваться лицам, обеспечивающим работу сайта, хостинга, email-сервисов, CRM, аналитики и иных технических сервисов, если это необходимо для работы сайта и оказания услуг.</li>
-        <li>Если на сайте используются сторонние сервисы аналитики, формы обратной связи, карты, виджеты или хостинг-провайдеры, их перечень должен быть отдельно указан в опубликованной версии политики.</li>
+        <li>Персональные данные не передаются третьим лицам без согласия пользователя, кроме случаев, предусмотренных законом.</li>
+        <li>Передача может происходить техническим сервисам, обеспечивающим работу сайта, если это необходимо для его функционирования.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>7. Сроки обработки и хранения</h2>
+      <h2>7. Сроки хранения</h2>
       <ul>
-        <li>Персональные данные хранятся не дольше, чем этого требуют цели обработки, если иной срок не предусмотрен законом или договором.</li>
-        <li>По достижении целей обработки либо при утрате необходимости в их достижении данные подлежат уничтожению или обезличиванию, если иное не предусмотрено законом.</li>
+        <li>Данные хранятся не дольше, чем это необходимо для достижения целей обработки.</li>
+        <li>По достижении целей обработки данные подлежат удалению или обезличиванию, если иное не требуется законом.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
       <h2>8. Права пользователя</h2>
       <ul>
-        <li>Получать сведения об обработке своих персональных данных.</li>
-        <li>Требовать уточнения, блокирования или уничтожения данных, если они являются неполными, устаревшими, неточными, незаконно полученными или не нужны для заявленной цели обработки.</li>
+        <li>Получать информацию об обработке своих данных.</li>
+        <li>Требовать уточнения, блокирования или удаления данных.</li>
         <li>Отозвать согласие на обработку персональных данных.</li>
-        <li>Обжаловать действия или бездействие оператора в уполномоченный орган или в суд.</li>
+        <li>Обжаловать действия оператора в установленном законом порядке.</li>
       </ul>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>9. Cookie и технические данные</h2>
-      <p>Если сайт использует cookie, счётчики, пиксели, аналитические системы и иные технические средства, это должно быть прямо указано в опубликованной версии политики. Для каждого реально используемого сервиса желательно отдельно раскрыть состав собираемых данных, цель использования и порядок отключения.</p>
+      <h2>9. Cookie-файлы</h2>
+      <p>Сайт может использовать cookie-файлы и иные технические данные для корректной работы страниц, сохранения пользовательских действий и улучшения взаимодействия с сайтом. Продолжение использования сайта после нажатия кнопки согласия означает согласие пользователя с использованием cookie-файлов.</p>
     </div>
-
     <div class="policy-card glass hover-lift">
-      <h2>10. Порядок обращения по вопросам персональных данных</h2>
-      <p>Запросы, связанные с обработкой персональных данных, направляются оператору по адресу электронной почты: <strong>укажи email</strong>.</p>
-      <p>В запросе желательно указать Ф.И.О., контактные данные для ответа и суть обращения.</p>
+      <h2>10. Обращения</h2>
+      <p>По вопросам обработки персональных данных пользователь может обратиться к оператору по следующим контактам: <strong>Телефон +79585017488, Telegram Kartuzov_dev</strong>.</p>
     </div>
-
     <div class="policy-card glass hover-lift">
       <h2>11. Изменение политики</h2>
-      <p>Оператор вправе вносить изменения в настоящую Политику. Актуальная версия должна постоянно находиться в свободном доступе на сайте по адресу страницы политики конфиденциальности.</p>
+      <p>Оператор вправе изменять настоящую Политику. Актуальная версия должна быть размещена на сайте в свободном доступе.</p>
     </div>
   </section>
 </main>
@@ -288,6 +285,16 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
     <span class="footer-line">© 2026</span>
     <span class="footer-line">Все права защищены • <a href="privacy.html">Политика конфиденциальности</a></span>
   </footer>
+
+  
+  <div class="cookie-overlay" id="cookieOverlay">
+    <div class="cookie-box">
+      <h2>Использование cookie-файлов</h2>
+      <p>Сайт использует cookie-файлы и технические данные для корректной работы страниц, сохранения пользовательских действий и повышения удобства использования сайта.</p>
+      <p>Нажимая кнопку ниже, ты подтверждаешь согласие на использование cookie-файлов в соответствии с Политикой конфиденциальности.</p>
+      <button class="btn btn-primary" id="acceptCookiesBtn">Принять и продолжить</button>
+    </div>
+  </div>
 
   <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -326,6 +333,36 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton();
     window.addEventListener('scroll', toggleButton);
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', () => {
+      try {
+        const url = new URL(link.href, window.location.href);
+        const sameOrigin = url.origin === window.location.origin;
+        const isHtml = url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname === '';
+        if (sameOrigin && isHtml) sessionStorage.setItem('skipCookieOnce', '1');
+      } catch (e) {}
+    });
+  });
+
+  const cookieOverlay = document.getElementById('cookieOverlay');
+  const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
+  const shouldSkipCookie = sessionStorage.getItem('skipCookieOnce') === '1';
+
+  if (cookieOverlay && !shouldSkipCookie) {
+    cookieOverlay.classList.add('show');
+    document.body.classList.add('cookies-locked');
+  }
+  if (shouldSkipCookie) {
+    sessionStorage.removeItem('skipCookieOnce');
+  }
+
+  if (acceptCookiesBtn && cookieOverlay) {
+    acceptCookiesBtn.addEventListener('click', () => {
+      cookieOverlay.classList.remove('show');
+      document.body.classList.remove('cookies-locked');
+    });
   }
 
   const createParticle = () => {

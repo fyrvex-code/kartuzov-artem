@@ -25,6 +25,7 @@ body{
     linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
   color:var(--text);min-height:100vh;overflow-x:hidden
 }
+body.cookies-locked{overflow:hidden}
 .bg-animation{
   position:fixed;inset:0;z-index:-4;
   background:
@@ -75,31 +76,31 @@ main{width:min(1260px, calc(100% - 40px));margin:44px auto 90px}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:250% auto;animation:shine 6s linear infinite
 }
 .hero h2{font-size:clamp(1.2rem,2.2vw,2rem);color:var(--muted);margin-bottom:18px}
-p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.cta p,.policy-card li{font-size:1.02rem;line-height:1.9;color:#edf0ff}
-.hero-buttons,.chip-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li,.policy-card li,.feature-card p,.long-card p{font-size:1.02rem;line-height:1.9;color:#edf0ff}
+.hero-buttons,.chip-row,.info-pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px 24px;border-radius:16px;
-  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease
+  font-weight:700;transition:transform .35s ease, box-shadow .35s ease, background .35s ease;border:none;cursor:pointer
 }
 .btn:hover{transform:translateY(-4px) scale(1.02)}
 .btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;box-shadow:0 12px 30px rgba(0,213,255,.22)}
 .btn-secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.16)}
-.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card{
+.hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.feature-card,.long-card{
   border-radius:28px;padding:28px;position:relative;overflow:hidden
 }
 .hero-card{min-height:360px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before{
+.hero-card::before,.project-card::before,.card::before,.service-card::before,.detail-card::before,.contact-card::before,.policy-card::before,.feature-card::before,.long-card::before{
   content:"";position:absolute;inset:auto -20% -60% auto;width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle, rgba(122,92,255,.12), transparent 70%);pointer-events:none
 }
 .code-line{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2vw,1.65rem);opacity:.98}
 .code-line.accent{color:var(--accent2);text-shadow:0 0 20px rgba(0,213,255,.45)}
-.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid{display:grid;gap:22px;margin-top:36px}
-.grid-3,.services-grid{grid-template-columns:repeat(3,1fr)}
-.grid-2,.contact-grid{grid-template-columns:repeat(2,1fr)}
+.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.policy-grid,.feature-grid,.long-grid{display:grid;gap:22px;margin-top:36px}
+.grid-3,.services-grid,.feature-grid{grid-template-columns:repeat(3,1fr)}
+.grid-2,.contact-grid,.long-grid{grid-template-columns:repeat(2,1fr)}
 .projects-grid{grid-template-columns:repeat(3,1fr)}
 .policy-grid{grid-template-columns:1fr}
-.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2{margin-bottom:14px;font-size:1.35rem}
+.card h3,.service-card h3,.project-card h2,.detail-card h2,.policy-card h2,.feature-card h3,.long-card h3{margin-bottom:14px;font-size:1.35rem}
 .section-title{margin-top:92px;margin-bottom:20px}
 .section-title p{color:var(--accent2);letter-spacing:2px;font-weight:700;margin-bottom:10px}
 .section-title h2{font-size:clamp(2rem,3vw,3.1rem)}
@@ -150,17 +151,29 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
 .contact-list{display:flex;flex-direction:column;gap:14px;margin-top:12px}
 .contact-item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
 .note{margin-top:24px;padding:18px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.cookie-overlay{
+  position:fixed;inset:0;background:rgba(4,8,20,.82);backdrop-filter:blur(8px);display:none;
+  align-items:center;justify-content:center;z-index:1000;padding:20px
+}
+.cookie-overlay.show{display:flex}
+.cookie-box{
+  width:min(720px,100%);padding:28px;border-radius:28px;background:rgba(12,18,44,.95);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 20px 60px rgba(0,0,0,.45)
+}
+.cookie-box h2{margin-bottom:14px;font-size:1.8rem}
+.cookie-box p{margin-bottom:14px}
+.cookie-box .btn{margin-top:8px}
 @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes shine{0%{background-position:0% center}100%{background-position:250% center}}
 @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-30px) scale(1.08)}}
 @media (max-width:1100px){
-  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid{grid-template-columns:1fr}
+  .hero,.detail-hero,.grid-3,.grid-2,.projects-grid,.services-grid,.contact-grid,.feature-grid,.long-grid{grid-template-columns:1fr}
   .header{flex-direction:column;gap:14px}.hero{min-height:auto;padding-top:26px}
 }
 @media (max-width:640px){
   .hero h1,.page-hero h1{font-size:2.1rem}
-  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item{padding:22px}
+  .hero-card,.card,.service-card,.project-card,.detail-card,.contact-card,.policy-card,.timeline-item,.feature-card,.long-card,.cookie-box{padding:22px}
   .timeline-item{grid-template-columns:1fr}
 }
 </style>
@@ -185,23 +198,111 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
       <p class="hero-badge">ПОРТФОЛИО ПРОГРАММИСТА</p>
       <h1>Я <span>Картузов Артём Сергеевич</span></h1>
       <h2>Умею делать сайты, ботов и приложения</h2>
-      <p>Я создаю современные цифровые проекты с красивым оформлением, богатым фоном, анимациями и удобным интерфейсом. Мне нравится делать сайты, которые сразу смотрятся дорого и выделяются на фоне обычных шаблонных решений.</p>
-      <p>Теперь в моём портфолио уже стоят реальные проекты. В разделе «Мои проекты» можно открыть карточки сайтов, перейти на отдельные страницы с подробностями и дальше нажать кнопку перехода на живой сайт.</p>
+      <p>Я создаю современные цифровые проекты с красивым оформлением, богатым фоном, анимациями и удобным интерфейсом. Мне нравится делать сайты, которые сразу смотрятся дорого и выделяются на фоне обычных шаблонных решений. Для меня важно, чтобы сайт не просто открывался, а создавал сильное впечатление уже с первого экрана.</p>
+      <p>В своей работе я соединяю верстку, анимации, подачу текста, логику интерфейса и визуальное настроение. Я стараюсь делать так, чтобы каждая секция выглядела продуманной, чтобы карточки были живыми, анимации уместными, а цвета современными и насыщенными. Такой подход помогает создавать проекты, которые приятно смотреть и удобно использовать.</p>
+      <p>Я умею работать с многостраничными сайтами, лендингами, страницами проектов, HTML-презентациями, красивыми блоками с услугами, а также с отдельными страницами подробного описания. Мне нравится превращать идею в полноценный цифровой продукт, у которого есть структура, характер и цель.</p>
       <div class="hero-buttons">
         <a href="projects.html" class="btn btn-primary">Мои проекты</a>
         <a href="contacts.html" class="btn btn-secondary">Связаться</a>
       </div>
-      <div class="chip-row">
-        <span class="tag">Сайты</span><span class="tag">Боты</span><span class="tag">Приложения</span><span class="tag">Анимации</span>
+      <div class="info-pills">
+        <span class="tag">Телефон: +79585017488</span>
+        <span class="tag">Telegram: Kartuzov_dev</span>
       </div>
     </div>
     <div class="hero-card glass floating">
       <div class="code-line">&lt;portfolio&gt;</div>
-      <div class="code-line accent">Kartuzov Drive</div>
-      <div class="code-line accent">Granatovaya Palata</div>
-      <div class="code-line accent">The Wizard of Oz</div>
-      <div class="code-line accent">Real Projects</div>
+      <div class="code-line accent">Сайты</div>
+      <div class="code-line accent">Боты</div>
+      <div class="code-line accent">Приложения</div>
+      <div class="code-line accent">Анимации</div>
+      <div class="code-line accent">Premium Design</div>
       <div class="code-line">&lt;/portfolio&gt;</div>
+    </div>
+  </section>
+
+  <section class="section-title reveal"><p>ОБО МНЕ КАК О РАЗРАБОТЧИКЕ</p><h2>Почему я делаю упор на визуал и структуру</h2></section>
+  <section class="long-grid reveal">
+    <div class="long-card glass hover-lift">
+      <h3>Сайт должен говорить за тебя</h3>
+      <p>Хороший сайт — это не просто страница с текстом и кнопками. Это полноценная презентация человека, услуги или идеи. Он должен передавать характер, вызывать доверие, удерживать внимание и помогать пользователю быстро понять, кто ты и чем можешь быть полезен.</p>
+      <p>Именно поэтому я делаю упор на комбинацию сильного дизайна, продуманного текста и анимаций. Когда все эти элементы работают вместе, сайт выглядит гораздо дороже и профессиональнее.</p>
+    </div>
+    <div class="long-card glass hover-lift">
+      <h3>Детали создают уровень</h3>
+      <p>Качество проекта складывается из мелочей: отступы, шрифты, акценты, порядок секций, глубина фона, плавность появления элементов, вид кнопок и логика переходов. Чем лучше проработаны такие детали, тем сильнее ощущается общий уровень сайта.</p>
+      <p>Я люблю собирать проекты так, чтобы у пользователя не возникало ощущения хаоса. Напротив, каждая секция должна вести к следующей и создавать впечатление завершённого продукта.</p>
+    </div>
+  </section>
+
+  <section class="section-title reveal"><p>ОСНОВНЫЕ НАПРАВЛЕНИЯ</p><h2>Что я умею делать</h2></section>
+  <section class="feature-grid reveal">
+    <div class="feature-card glass hover-lift">
+      <div class="icon">🌐</div>
+      <h3>Разработка сайтов</h3>
+      <p>Я создаю сайты-визитки, лендинги, многостраничные проекты, красивые презентационные страницы и портфолио. Такие сайты помогают представить услуги, бренд, специалиста или идею в сильной и современной форме.</p>
+    </div>
+    <div class="feature-card glass hover-lift">
+      <div class="icon">🤖</div>
+      <h3>Создание ботов</h3>
+      <p>Я могу делать ботов для автоматизации задач, обработки команд, получения заявок, общения с клиентами и удобного взаимодействия через Telegram и другие цифровые каналы.</p>
+    </div>
+    <div class="feature-card glass hover-lift">
+      <div class="icon">📱</div>
+      <h3>Приложения и интерфейсы</h3>
+      <p>Отдельное направление — веб-интерфейсы, интерактивные страницы и сервисы, где важны удобство, логика, понятные блоки и аккуратная визуальная подача.</p>
+    </div>
+  </section>
+
+  <section class="section-title reveal"><p>МОЙ ПОДХОД</p><h2>Как я строю проект от идеи до готового результата</h2></section>
+  <section class="timeline-list reveal">
+    <div class="timeline-item glass hover-lift">
+      <span>01</span>
+      <div>
+        <h3>Сначала структура</h3>
+        <p>Я определяю, какие секции нужны на сайте, в каком порядке они должны идти, где будет главное сообщение, как подать преимущества и каким образом пользователь будет двигаться по странице.</p>
+      </div>
+    </div>
+    <div class="timeline-item glass hover-lift">
+      <span>02</span>
+      <div>
+        <h3>Потом визуальная подача</h3>
+        <p>После структуры я продумываю стиль: фон, цветовую палитру, карточки, анимации, световые акценты, кнопки, декоративные элементы и общее настроение интерфейса.</p>
+      </div>
+    </div>
+    <div class="timeline-item glass hover-lift">
+      <span>03</span>
+      <div>
+        <h3>И только потом довожу до сильного вида</h3>
+        <p>На последнем этапе я добавляю насыщенность: более глубокие тексты, сильные секции, подробные страницы проектов, красивые переходы и логичные элементы навигации. Так сайт становится не просто рабочим, а действительно выразительным.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-title reveal"><p>ЧТО ЕСТЬ УЖЕ СЕЙЧАС</p><h2>Реальные проекты внутри портфолио</h2></section>
+  <section class="grid-3 reveal">
+    <div class="card glass hover-lift"><div class="icon">🚗</div><h3>Kartuzov Drive</h3><p>Сайт инструктора по вождению с услугами, отзывами, этапами занятий и блоками контактов.</p></div>
+    <div class="card glass hover-lift"><div class="icon">🏛️</div><h3>Грановитая палата</h3><p>Историческая HTML-презентация с насыщенным содержанием, отдельными разделами и большим количеством текста.</p></div>
+    <div class="card glass hover-lift"><div class="icon">🪄</div><h3>The Wizard of Oz</h3><p>Презентационный сайт о произведении и персонажах с художественной подачей и тематическим оформлением.</p></div>
+  </section>
+
+  <section class="section-title reveal"><p>КОНТАКТЫ</p><h2>Как со мной связаться</h2></section>
+  <section class="grid-2 reveal">
+    <div class="contact-card glass hover-lift">
+      <h3>Быстрая связь</h3>
+      <p>Если нужен сайт, проект, красивая страница, доработка дизайна или цифровая презентация, можно связаться со мной напрямую.</p>
+      <div class="contact-list">
+        <div class="contact-item">Телефон: +79585017488</div>
+        <div class="contact-item">Telegram: Kartuzov_dev</div>
+      </div>
+    </div>
+    <div class="contact-card glass hover-lift">
+      <h3>Для чего подходит это портфолио</h3>
+      <p>Такой сайт можно использовать как личное портфолио программиста, страницу услуг, презентацию разработчика, витрину проектов или красивый старт для личного бренда в digital-сфере.</p>
+      <div class="hero-buttons">
+        <a href="projects.html" class="btn btn-primary">Открыть проекты</a>
+        <a href="privacy.html" class="btn btn-secondary">Политика конфиденциальности</a>
+      </div>
     </div>
   </section>
 </main>
@@ -211,6 +312,16 @@ p,.lead,.card p,.service-card p,.project-card p,.timeline-item p,.detail-list li
     <span class="footer-line">© 2026</span>
     <span class="footer-line">Все права защищены • <a href="privacy.html">Политика конфиденциальности</a></span>
   </footer>
+
+  
+  <div class="cookie-overlay" id="cookieOverlay">
+    <div class="cookie-box">
+      <h2>Использование cookie-файлов</h2>
+      <p>Сайт использует cookie-файлы и технические данные для корректной работы страниц, сохранения пользовательских действий и повышения удобства использования сайта.</p>
+      <p>Нажимая кнопку ниже, ты подтверждаешь согласие на использование cookie-файлов в соответствии с Политикой конфиденциальности.</p>
+      <button class="btn btn-primary" id="acceptCookiesBtn">Принять и продолжить</button>
+    </div>
+  </div>
 
   <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -249,6 +360,36 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton();
     window.addEventListener('scroll', toggleButton);
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', () => {
+      try {
+        const url = new URL(link.href, window.location.href);
+        const sameOrigin = url.origin === window.location.origin;
+        const isHtml = url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname === '';
+        if (sameOrigin && isHtml) sessionStorage.setItem('skipCookieOnce', '1');
+      } catch (e) {}
+    });
+  });
+
+  const cookieOverlay = document.getElementById('cookieOverlay');
+  const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
+  const shouldSkipCookie = sessionStorage.getItem('skipCookieOnce') === '1';
+
+  if (cookieOverlay && !shouldSkipCookie) {
+    cookieOverlay.classList.add('show');
+    document.body.classList.add('cookies-locked');
+  }
+  if (shouldSkipCookie) {
+    sessionStorage.removeItem('skipCookieOnce');
+  }
+
+  if (acceptCookiesBtn && cookieOverlay) {
+    acceptCookiesBtn.addEventListener('click', () => {
+      cookieOverlay.classList.remove('show');
+      document.body.classList.remove('cookies-locked');
+    });
   }
 
   const createParticle = () => {
